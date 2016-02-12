@@ -1,0 +1,51 @@
+import com.alert.alertdialog.R;
+import android.app.Activity;
+import android.app.Dialog;
+import android.os.Bundle;
+import android.view.View;
+import android.view.Window;
+import android.widget.Button;
+
+public class CustomAlertDialogClass extends Dialog implements
+android.view.View.OnClickListener 
+{
+	private Activity activity;
+	private Button yes, no;
+			
+	public CustomDialogClass(Activity a) 
+	{
+		super(a);
+		this.activity = a;
+	}
+			
+	@Override
+	protected void onCreate(Bundle savedInstanceState) 
+	{
+		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		setContentView(R.layout.custom_part_ii);
+		yes = (Button) findViewById(R.id.btnYes);
+		no = (Button) findViewById(R.id.btnNo);
+		yes.setOnClickListener(this);
+		no.setOnClickListener(this);
+	}
+	
+	@Override
+	public void onClick(View v)
+	{
+		switch (v.getId())
+		{
+			case R.id.btnYes:
+		    activity.finish();
+			break;
+			
+			case R.id.btnNo:
+			dismiss();
+			break;
+			
+			default:
+			  break;
+		}
+		dismiss();
+	}
+}
